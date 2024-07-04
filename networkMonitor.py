@@ -128,7 +128,7 @@ root.title("Network Bandwidth Monitor")
 root.configure(bg="#212121")
 root.overrideredirect(True)  # Remove default title bar
 
-# Track the "stay on top" state
+# Initialize a variable to track the "stay on top" state
 stay_on_top = False
 
 # Function to handle toggling "stay on top"
@@ -146,7 +146,7 @@ title_bar.bind("<ButtonPress-1>", start_drag)
 title_bar.bind("<B1-Motion>", drag_window)
 
 # Title label
-title_label = tk.Label(title_bar, text="Network Bandwidth Monitor", bg="#262626", fg="#f5f5f5", font=("Verdana", 8, "bold"))
+title_label = tk.Label(title_bar, text="Network Monitor", bg="#262626", fg="#f5f5f5", font=("Verdana", 8, "bold"))
 title_label.pack(side="left", padx=2)
 
 # Title bar height based on the title label's font size
@@ -177,24 +177,26 @@ main_frame = tk.Frame(root, bg="#212121")
 main_frame.pack(fill="both", expand=True, pady=10, padx=5)
 
 # Create labels
-upload_label = tk.Label(main_frame, text=f"Up: {get_size(cumulative_upload)}", font=("Arial", 8, "bold"), fg="#f5f5f5", bg="#212121")
-download_label = tk.Label(main_frame, text=f"Down: {get_size(cumulative_download)}", font=("Arial", 8, "bold"), fg="#f5f5f5", bg="#212121")
-upload_speed_label = tk.Label(main_frame, text="Up Speed: N/A", font=("Arial", 8, "bold"), fg="#f5f5f5", bg="#212121")
-download_speed_label = tk.Label(main_frame, text="Down Speed: N/A", font=("Arial", 8, "bold"), fg="#f5f5f5", bg="#212121")
+upload_label = tk.Label(main_frame, text=f"Up: {get_size(cumulative_upload)}", font=("Arial", 9, "bold"), fg="#f5f5f5", bg="#212121")
+download_label = tk.Label(main_frame, text=f"Down: {get_size(cumulative_download)}", font=("Arial", 9, "bold"), fg="#f5f5f5", bg="#212121")
+upload_speed_label = tk.Label(main_frame, text="Up Speed: N/A", font=("Arial", 9, "bold"), fg="#f5f5f5", bg="#212121")
+download_speed_label = tk.Label(main_frame, text="Down Speed: N/A", font=("Arial", 9, "bold"), fg="#f5f5f5", bg="#212121")
 
-upload_label.grid(row=0, column=0, padx=5, sticky="ew")
-download_label.grid(row=0, column=1, padx=5, sticky="ew")
-upload_speed_label.grid(row=0, column=2, padx=5, sticky="ew")
-download_speed_label.grid(row=0, column=3, padx=5, sticky="ew")
+upload_label.grid(row=0, column=0, padx=5, sticky="ew", pady=5)
+download_label.grid(row=0, column=1, padx=5, sticky="ew", pady=5)
+upload_speed_label.grid(row=0, column=2, padx=5, sticky="ew", pady=5)
+download_speed_label.grid(row=0, column=3, padx=5, sticky="ew", pady=5)
+
 
 main_frame.grid_columnconfigure(0, weight=1)
 main_frame.grid_columnconfigure(1, weight=1)
 main_frame.grid_columnconfigure(2, weight=1)
 main_frame.grid_columnconfigure(3, weight=1)
 
+
 root.update_idletasks()
 width = main_frame.winfo_reqwidth() + 150
-height = main_frame.winfo_reqheight() + title_bar_height + 20
+height = main_frame.winfo_reqheight() + title_bar_height + 15
 root.geometry(f"{width}x{height}")
 
 root.after(0, update_stats)
